@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trace — Image Forensics</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark">T</span><span>TRACE<span class="brand-muted">/LAB</span></span></a>
+    <nav><a class="nav-active" href="#analyzer">Analyzer</a><a href="#how">How it works</a></nav>
+    <div class="api-status"><span class="status-dot" id="apiDot"></span><span id="apiStatus">API STATUS · CHECKING</span></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span class="eyebrow-line"></span> DIGITAL IMAGE FORENSICS <span class="eyebrow-line"></span></div>
+      <h1>Look closer.<br><span>Find what’s hidden.</span></h1>
+      <p class="hero-copy">Analyze image integrity using Error Level Analysis and a deep-learning model trained to identify digital manipulation.</p>
+    </section>
+
+
+    <section class="workspace" id="analyzer">
+      <div class="section-heading"><div><span class="section-index">01 / INPUT</span><h2>Image analysis</h2></div><span class="mono small">SUPPORTED · JPG / PNG / WEBP</span></div>
+      <div class="panel upload-panel" id="dropZone">
+        <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp,image/bmp" hidden />
+        <div class="upload-content" id="uploadContent">
+          <div class="upload-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M4 16.5v2A1.5 1.5 0 0 0 5.5 20h13a1.5 1.5 0 0 0 1.5-1.5v-2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <h3>Drop an image to inspect</h3><p>or <button class="browse-btn" id="browseBtn">browse files</button> from your device</p>
+          <span class="upload-meta">Maximum file size: 10 MB</span>
+        </div>
+        <div class="preview-wrap" id="previewWrap" hidden>
+          <img id="previewImage" alt="Selected image preview" />
+          <div class="preview-footer"><div><span class="mono small">SELECTED FILE</span><p id="fileName">—</p><span id="fileMeta" class="mono small"></span></div><button class="remove-btn" id="removeBtn" aria-label="Remove image">×</button></div>
+        </div>
+      </div>
+      <div class="actions"><div class="privacy-note"><span class="lock-icon">⌑</span> Image is sent to the analysis API for processing.</div><button class="analyze-btn" id="analyzeBtn" disabled><span>Analyze image</span><span class="btn-arrow">↗</span></button></div>
+      <div class="loading-panel" id="loadingPanel" hidden><div class="scan-line"></div><div class="loading-head"><span class="loading-spinner"></span><span>RUNNING FORENSIC ANALYSIS</span><span class="mono" id="loadingTime">—</span></div><p>Extracting compression patterns and evaluating image integrity…</p></div>
+      <section class="result-section" id="resultSection" hidden>
+        <div class="section-heading result-heading"><div><span class="section-index">02 / FINDINGS</span><h2>Analysis result</h2></div><span class="mono small" id="resultTimestamp"></span></div>
+        <div class="result-card" id="resultCard">
+          <div class="result-top"><div class="result-symbol" id="resultSymbol">✓</div><div><span class="mono small result-label">MODEL CLASSIFICATION</span><h3 id="resultLabel">AUTHENTIC</h3><p id="resultDescription">The model did not identify strong manipulation signals.</p></div><div class="confidence"><span class="mono small">CONFIDENCE</span><strong id="confidenceValue">—%</strong></div></div>
+          <div class="confidence-track"><div id="confidenceBar"></div></div>
+          <div class="result-bottom"><span class="mono small">MODEL · RESNET18 / ELA</span><button class="secondary-btn" id="newAnalysisBtn">Analyze another image ↗</button></div>
+        </div>
+        <div class="disclaimer"><span>ⓘ</span> This is an automated assessment, not definitive proof of authenticity. Results may be affected by compression, image quality, or editing techniques.</div>
+      </section>
+    </section>
+
+    <section class="how-section" id="how"><div class="section-heading"><div><span class="section-index">03 / PROCESS</span><h2>Under the surface</h2></div></div><div class="steps"><article><span class="step-number">01</span><h3>Error Level Analysis</h3><p>The image is recompressed and pixel differences are highlighted to reveal irregular compression patterns.</p></article><article><span class="step-number">02</span><h3>Deep learning</h3><p>Processed image patterns are evaluated by a fine-tuned ResNet18 neural network.</p></article><article><span class="step-number">03</span><h3>Classification</h3><p>The model returns its predicted class and confidence score for the uploaded image.</p></article></div></section>
+  </main>
+  <footer><div class="brand footer-brand"><span class="brand-mark">T</span><span>TRACE<span class="brand-muted">/LAB</span></span></div><span class="mono small">IMAGE FORENSICS INTERFACE · ML BACKEND</span><span class="mono small">© 2026</span></footer>
+  <script src="script.js"></script>
+</body>
+</html>
